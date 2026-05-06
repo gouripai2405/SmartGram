@@ -1,7 +1,7 @@
 // ==============================
 // API CONFIG
 // ==============================
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "http://smartgram-backend.onrender.com/api";
 
 const getToken = () => {
   const token =
@@ -45,7 +45,7 @@ const handleResponse = async (res: Response) => {
 // ==============================
 export const authAPI = {
   login: async (email: string, password: string) => {
-    const res = await fetch(`${API_BASE_URL}/auth/login`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify({ email, password }),
@@ -55,7 +55,7 @@ export const authAPI = {
   },
 
   register: async (email: string, password: string, name: string) => {
-    const res = await fetch(`${API_BASE_URL}/auth/register`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/register`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify({ email, password, name }),
@@ -70,7 +70,7 @@ export const authAPI = {
 // ==============================
 export const complaintsAPI = {
   list: async () => {
-    const res = await fetch(`${API_BASE_URL}/complaints`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/complaints`, {
       headers: getAuthHeaders(),
     });
     return handleResponse(res);
@@ -81,7 +81,7 @@ export const complaintsAPI = {
     description: string;
     category: string;
   }) => {
-    const res = await fetch(`${API_BASE_URL}/complaints`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/complaints`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -96,14 +96,14 @@ export const complaintsAPI = {
 // ==============================
 export const taxesAPI = {
   list: async () => {
-    const res = await fetch(`${API_BASE_URL}/taxes`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/taxes`, {
       headers: getAuthHeaders(),
     });
 
     return handleResponse(res);
   },
   pay: async (id: string) => {
-  const res = await fetch(`${API_BASE_URL}/taxes/${id}/pay`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/taxes/${id}/pay`, {
     method: "PUT",
     headers: getAuthHeaders(),
   });
@@ -117,7 +117,9 @@ export const taxesAPI = {
 // ==============================
 export const noticesAPI = {
   list: async () => {
-    const res = await fetch('http://localhost:5000/api/notices');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/notices`, {
+      headers: getAuthHeaders(),
+    });
     return res.json();
   },
 };
@@ -127,7 +129,7 @@ export const noticesAPI = {
 // ==============================
 export const receiptsAPI = {
   list: async () => {
-    const res = await fetch(`${API_BASE_URL}/receipts`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/receipts`, {
       headers: getAuthHeaders(),
     });
 
@@ -145,7 +147,7 @@ export const supportAPI = {
     category: string;
     priority: string;
   }) => {
-    const res = await fetch(`${API_BASE_URL}/support`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/support`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -161,7 +163,7 @@ export const supportAPI = {
 
 export const propertiesAPI = {
   list: async () => {
-    const res = await fetch(`${API_BASE_URL}/properties`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/properties`, {
       headers: getAuthHeaders(),
     });
 
