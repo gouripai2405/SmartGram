@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const receiptSchema = new mongoose.Schema(
+const paymentSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -8,7 +8,7 @@ const receiptSchema = new mongoose.Schema(
       required: true,
     },
 
-    tax: {
+    taxId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Tax",
       required: true,
@@ -19,12 +19,12 @@ const receiptSchema = new mongoose.Schema(
       required: true,
     },
 
-    paymentId: {
+    status: {
       type: String,
-      required: true,
+      default: "success",
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Receipt", receiptSchema);
+module.exports = mongoose.model("Payment", paymentSchema);
