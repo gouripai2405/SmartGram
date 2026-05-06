@@ -19,6 +19,5 @@ export async function apiRequest(
     body: body ? JSON.stringify(body) : undefined,
   });
 
-  const data = await res.json();
-  return data;
+  return res.json();
 }
